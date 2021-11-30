@@ -12,9 +12,9 @@ namespace Mood_Analyzer_Test
             string msg = "I am in sad mood";
             string expected = "SAD";
 
-            MoodAnalyzer mood = new MoodAnalyzer(msg);
+            MoodAnalyzer mood = new MoodAnalyzer();
 
-            string actual = mood.AnalyseMood();
+            string actual = mood.AnalyseMood(msg);
 
             Assert.AreEqual(expected, actual);
         }
@@ -24,9 +24,9 @@ namespace Mood_Analyzer_Test
             string msg = "I am in Any mood";
             string expected = "HAPPY";
 
-            MoodAnalyzer mood = new MoodAnalyzer(msg);
+            MoodAnalyzer mood = new MoodAnalyzer();
 
-            string actual = mood.AnalyseMood();
+            string actual = mood.AnalyseMood(msg);
 
             Assert.AreEqual(expected, actual);
         }
