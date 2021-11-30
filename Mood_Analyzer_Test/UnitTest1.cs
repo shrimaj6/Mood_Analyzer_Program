@@ -9,26 +9,54 @@ namespace Mood_Analyzer_Test
         [TestMethod]
         public void NullMood()
         {
-            string msg = " ";
-            string expected = "HAPPY";
+            {
+                string msg = " ";
+                string expected = "HAPPY";
 
-            MoodAnalyzer mood = new MoodAnalyzer(msg);
+                MoodAnalyzer mood = new MoodAnalyzer(msg);
 
-            string actual = mood.AnalyseMood();
+                string actual = mood.AnalyseMood();
 
-            Assert.AreEqual(expected, actual);
+                Assert.AreEqual(expected, actual);
+            }
         }
-         // [TestMethod]
-        //public void MsgHaapyMood()
-        //{
-        //    string msg = "I am in Any mood";
-        //    string expected = "HAPPY";
 
-        //    MoodAnalyzer mood = new MoodAnalyzer();
+        [TestMethod]
 
-        //    string actual = mood.AnalyseMood(msg);
+        public void getCustomEmptyException()
+        {
+            string expected = "message should not be empty";
+            MoodAnalyzer modeAnalyzer = new MoodAnalyzer(string.Empty);
 
-        //    Assert.AreEqual(expected, actual);
-        //}
+            try
+            {
+                string actual = modeAnalyzer.AnalyseMood1();
+
+            }
+            catch (CustomException ex)
+            {
+                Assert.AreEqual(expected, ex.Message);
+            }
+        }
+
+        [TestMethod]
+         public void GetCustomNullException()
+         {
+            string expected = "message should not be null";
+            MoodAnalyzer modeAnalyzer = new MoodAnalyzer(" ");
+
+            try
+            {
+                string actual = modeAnalyzer.AnalyseMood();
+
+            }
+            catch (CustomException ex)
+            {
+                Assert.AreEqual(expected, ex.Message);
+            }
+         }
     }
 }
+
+
+
