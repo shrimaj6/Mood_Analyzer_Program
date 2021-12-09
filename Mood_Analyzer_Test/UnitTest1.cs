@@ -5,21 +5,19 @@ namespace Mood_Analyzer_Test
 
 {
     [TestClass]
-    public class UnitTest1
+    public class TestMood
     {
         [TestMethod]
         public void NullMood()
         {
-            {
-                string msg = " ";
-                string expected = "HAPPY";
+            string msg = " ";
+            string expected = "HAPPY";
 
-                MoodAnalyzer mood = new MoodAnalyzer(msg);
+            MoodAnalyzer mood = new MoodAnalyzer(msg);
 
-                string actual = mood.AnalyseMood();
+            string actual = mood.AnalyseMood();
 
-                Assert.AreEqual(expected, actual);
-            }
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -106,8 +104,51 @@ namespace Mood_Analyzer_Test
                 Assert.AreEqual("Constructor not found", ex.Message);
             }
         }
+
+        [TestMethod]
+
+        public void ParameterisedConstructor_MoodAnalyseClassName()
+        {
+            object expected = new MoodAnalyzer("HAPPY");
+            object obj = MoodAnalyzerFactory.MoodAnalyserParameterisedConstructor("MSTestMoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser","HAPPY");
+            expected.Equals(obj);
+        }
+
+        [TestMethod]
+
+        public void ParameterisedConstructor_WrongClassName()
+        {
+            try
+            {
+                object expected = new MoodAnalyzer("HAPPY");
+                object obj = MoodAnalyzerFactory.MoodAnalyserParameterisedConstructor("MSTestMoodAnalyzerProblem.MoodAnalyserWrong", "MoodAnalyser");
+                expected.Equals(obj);
+            }
+
+            catch (CustomException ex)
+            {
+                Assert.AreEqual("Class not found", ex.Message);
+            }
+        }
+
+        [TestMethod]
+        public void ParameterisedConstructor_WrongConstrcutorName()
+        {
+            try
+            {
+                object expected = new MoodAnalyzer("HAPPY");
+                object obj = MoodAnalyzerFactory.MoodAnalyserParameterisedConstructor("MSTestMoodAnalyzerProblem.MoodAnalyser", "MoodAnalyserWrong");
+                expected.Equals(obj);
+            }
+
+            catch (CustomException ex)
+            {
+                Assert.AreEqual("Class not found", ex.Message);
+            }
+        }
     }
 }
+
 
 
 
